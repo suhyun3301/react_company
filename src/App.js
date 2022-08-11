@@ -1,7 +1,39 @@
+import { Route } from 'react-router-dom'
+
+import Header from './components/common/Header'
+import Footer from './components/common/Footer'
+
+import Visual from './components/main/Visual'
+import Content from './components/main/Content'
+
+import Department from './components/sub/Department'
+import Community from './components/sub/Community'
+import Gallery from './components/sub/Gallery'
+import Youtube from './components/sub/Youtube'
+import Location from './components/sub/Location'
+import Members from './components/sub/Members'
+
 import './scss/style.scss'
 
 function App() {
-  return <h1>Hello</h1>
+  return (
+    <>
+      <Header />
+      <Route exact path="/">
+        <Visual />
+        <Content />
+      </Route>
+
+      <Route path="/community" component={Department} />
+      <Route path="/community" component={Community} />
+      <Route path="/gallery" component={Gallery} />
+      <Route path="/youtube" component={Youtube} />
+      <Route path="/location" component={Location} />
+      <Route path="/location" component={Members} />
+
+      <Footer />
+    </>
+  )
 }
 
 export default App
