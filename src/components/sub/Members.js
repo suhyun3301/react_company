@@ -1,5 +1,11 @@
+import SubLayout from '../common/SubLayout'
+
 function Members() {
-  return <div>Members</div>
+  return (
+    <SubLayout name="members">
+      <span>test</span>
+    </SubLayout>
+  )
 }
 
 export default Members

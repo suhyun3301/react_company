@@ -1,5 +1,7 @@
+import SubLayout from '../common/SubLayout'
+
 function Location() {
-  return <div>Location</div>
+  return <SubLayout name="location"></SubLayout>
 }
 
 export default Location

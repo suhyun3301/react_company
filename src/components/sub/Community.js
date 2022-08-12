@@ -1,5 +1,7 @@
+import SubLayout from '../common/SubLayout'
+
 function Community() {
-  return <div>Community</div>
+  return <SubLayout name="community"></SubLayout>
 }
 
 export default Community

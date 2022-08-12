@@ -1,5 +1,7 @@
+import SubLayout from '../common/SubLayout'
+
 function Department() {
-  return <div>Department</div>
+  return <SubLayout name="department"></SubLayout>
 }
 
 export default Department
