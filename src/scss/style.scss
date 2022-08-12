@@ -1,5 +1,10 @@
 @import 'base/reset';
 
+@import 'mixins/typo';
+@import 'mixins/object-fit';
+@import 'mixins/flex';
+@import 'mixins/hover';
+
 @import 'components/header';
 @import 'components/footer';
 
