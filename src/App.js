@@ -19,17 +19,18 @@ function App() {
   return (
     <>
       <Header />
+
       <Route exact path="/">
         <Visual />
         <Content />
       </Route>
 
-      <Route path="/community" component={Department} />
+      <Route path="/department" component={Department} />
       <Route path="/community" component={Community} />
       <Route path="/gallery" component={Gallery} />
       <Route path="/youtube" component={Youtube} />
       <Route path="/location" component={Location} />
-      <Route path="/location" component={Members} />
+      <Route path="/members" component={Members} />
 
       <Footer />
     </>
