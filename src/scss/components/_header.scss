@@ -53,6 +53,10 @@
             &::after {
               width: 100%;
             }
+
+            &.active::after {
+              width: 0;
+            }
           }
         }
 
@@ -61,6 +65,24 @@
 
           &::after {
             @include hover-line;
+          }
+
+          &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            top: 0;
+            right: -8px;
+            background-color: transparent;
+            transition: 0.2s;
+          }
+
+          &.active::before {
+            background-color: #18abfc;
+            top: -1px;
           }
         }
       }
