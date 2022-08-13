@@ -1,4 +1,5 @@
 @import 'base/reset';
+@import 'base/z-index';
 @import 'base/global';
 
 @import 'mixins/typo';
@@ -9,6 +10,7 @@
 @import 'components/header';
 @import 'components/footer';
 
+@import 'layouts/common';
 @import 'layouts/main';
 
 @import 'layouts/sub/sub-common';
