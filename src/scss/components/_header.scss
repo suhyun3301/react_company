@@ -82,7 +82,7 @@
           }
 
           &.active::before {
-            background-color: #18abfc;
+            background-color: $blue;
             top: -1px;
           }
         }
