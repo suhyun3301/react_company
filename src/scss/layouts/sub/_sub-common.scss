@@ -1,12 +1,28 @@
 .container {
-  margin-left: $nav-width;
   display: flex;
+  transition: 0.3s;
+
+  &.on {
+    .title-box {
+      left: $nav-width;
+    }
+
+    .content {
+      top: 0;
+    }
+  }
 
   .title-box {
+    position: fixed;
+    top: 0;
+    left: 0;
     border-right: 1px solid #f2f3f4;
+    background-color: #fff;
     padding: 30px;
-    width: 280px;
+    width: 300px;
     height: 100vh;
+    flex-shrink: 0;
+    transition: 0.3s;
 
     h1 {
       text-transform: capitalize;
@@ -26,5 +42,13 @@
       @include font(13px, 1.6);
       font-weight: 300;
     }
+  }
+
+  .content {
+    position: relative;
+    top: -100%;
+    margin-left: $nav-width + $subtitle-width;
+    padding: 32px;
+    transition: 0.2s 0.3s;
   }
 }
