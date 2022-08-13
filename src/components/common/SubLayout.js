@@ -23,8 +23,8 @@ function SubLayout({ name, sub, children }) {
         <p>{sub.p}</p>
       </div>
 
-      <div className="content">
-        {children}
+      <div className="content-wrap">
+        <div className="content">{children}</div>
         <Footer />
       </div>
     </section>

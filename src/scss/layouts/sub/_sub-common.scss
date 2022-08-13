@@ -7,7 +7,7 @@
       left: $nav-width;
     }
 
-    .content {
+    .content-wrap {
       top: 0;
     }
   }
@@ -44,11 +44,11 @@
     }
   }
 
-  .content {
+  .content-wrap {
     position: relative;
     top: -100%;
     margin-left: $nav-width + $subtitle-width;
     padding: 32px;
-    transition: 0.2s 0.3s;
+    transition: 0.2s 0.2s;
   }
 }
