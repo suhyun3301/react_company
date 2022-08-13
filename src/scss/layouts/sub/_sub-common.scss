@@ -1,7 +1,30 @@
-.content {
+.container {
   margin-left: $nav-width;
+  display: flex;
 
-  .title {
-    text-transform: capitalize;
+  .title-box {
+    border-right: 1px solid #f2f3f4;
+    padding: 30px;
+    width: 280px;
+    height: 100vh;
+
+    h1 {
+      text-transform: capitalize;
+      @include font(14px);
+      font-weight: 600;
+      margin-bottom: 64px;
+      color: #03afff;
+    }
+
+    h2 {
+      @include font(36px, 1.2);
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    p {
+      @include font(13px, 1.6);
+      font-weight: 300;
+    }
   }
 }

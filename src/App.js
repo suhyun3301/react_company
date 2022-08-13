@@ -1,7 +1,6 @@
 import { Route } from 'react-router-dom'
 
 import Header from './components/common/Header'
-import Footer from './components/common/Footer'
 
 import Visual from './components/main/Visual'
 import Content from './components/main/Content'
@@ -31,8 +30,6 @@ function App() {
       <Route path="/youtube" component={Youtube} />
       <Route path="/location" component={Location} />
       <Route path="/members" component={Members} />
-
-      <Footer />
     </>
   )
 }

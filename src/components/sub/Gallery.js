@@ -1,7 +1,12 @@
 import SubLayout from '../common/SubLayout'
 
 function Gallery() {
-  return <SubLayout name="gallery"></SubLayout>
+  const subtitle = {
+    title: 'Work Life',
+    p: 'PRODUCTS & NEWS',
+  }
+
+  return <SubLayout name="gallery" sub={subtitle}></SubLayout>
 }
 
 export default Gallery

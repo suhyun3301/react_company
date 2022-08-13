@@ -1,4 +1,6 @@
-function SubLayout({ name, children }) {
+import Footer from './Footer'
+
+function SubLayout({ name, sub, children }) {
   let title = name
 
   if (title === 'location') {
@@ -8,9 +10,17 @@ function SubLayout({ name, children }) {
   }
 
   return (
-    <section className={`content ${name}`}>
-      <h1 className="title">{title}</h1>
-      {children}
+    <section className={`container ${name}`}>
+      <div className="title-box">
+        <h1>{title}</h1>
+        <h2>{sub.title}</h2>
+        <p>{sub.p}</p>
+      </div>
+
+      <div className="content">
+        {children}
+        <Footer />
+      </div>
     </section>
   )
 }
