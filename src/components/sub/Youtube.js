@@ -1,4 +1,5 @@
 import SubLayout from '../common/SubLayout'
+import Pop from '../common/Pop'
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -6,6 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Youtube() {
   const [Videos, setVideos] = useState([])
+  const [Show, setShow] = useState(false)
+  const [Index, setIndex] = useState(0)
+
   const subtitle = {
     title: 'Trello Views',
     p: 'Trusted by millions, Trello is the visual collaboration tool that creates a shared perspective on any project.',
@@ -19,7 +23,6 @@ function Youtube() {
 
     axios.get(url).then((json) => {
       setVideos(json.data.items)
-      console.log(json.data.items)
     })
   }, [])
 
@@ -27,7 +30,13 @@ function Youtube() {
     <SubLayout name={'youtube'} sub={subtitle}>
       {Videos.map((item, i) => {
         return (
-          <article key={i}>
+          <article
+            key={i}
+            onClick={() => {
+              setShow(true)
+              setIndex(i)
+            }}
+          >
             <div className="thum">
               <span className="icon">
                 <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
@@ -51,6 +60,17 @@ function Youtube() {
           </article>
         )
       })}
+
+      {Show && (
+        <Pop close={setShow}>
+          <div className="video">
+            <iframe
+              src={`https://www.youtube.com/embed/${Videos[Index].snippet.resourceId.videoId}`}
+              frameborder="0"
+            ></iframe>
+          </div>
+        </Pop>
+      )}
     </SubLayout>
   )
 }
