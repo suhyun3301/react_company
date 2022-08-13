@@ -1,6 +1,8 @@
 import SubLayout from '../common/SubLayout'
+import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function Youtube() {
   const [Videos, setVideos] = useState([])
@@ -17,6 +19,7 @@ function Youtube() {
 
     axios.get(url).then((json) => {
       setVideos(json.data.items)
+      console.log(json.data.items)
     })
   }, [])
 
@@ -25,19 +28,26 @@ function Youtube() {
       {Videos.map((item, i) => {
         return (
           <article key={i}>
-            <div className="img-box">
+            <div className="thum">
+              <span className="icon">
+                <FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon>
+              </span>
               <img
-                src={item.snippet.thumbnails.standard.url}
+                src={item.snippet.thumbnails.high.url}
                 alt={item.snippet.title}
               />
             </div>
 
-            <strong>{item.snippet.videoOwnerChannelTitle}</strong>
-            <h3>{item.snippet.title}</h3>
-            <p>{item.snippet.description}</p>
-            <span>
-              {item.snippet.publishedAt.split('T')[0].replace(/-/gi, '.')}
-            </span>
+            <div className="desc">
+              <strong className="owner">
+                {item.snippet.videoOwnerChannelTitle}
+              </strong>
+              <h3 className="title">{item.snippet.title}</h3>
+              <p>{item.snippet.description}</p>
+              <span className="time">
+                {item.snippet.publishedAt.split('T')[0].replace(/-/gi, '.')}
+              </span>
+            </div>
           </article>
         )
       })}
