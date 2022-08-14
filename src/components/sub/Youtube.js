@@ -13,6 +13,7 @@ function Youtube() {
   const subtitle = {
     title: 'Trello Views',
     p: 'Trusted by millions, Trello is the visual collaboration tool that creates a shared perspective on any project.',
+    count: Videos.length,
   }
 
   useEffect(() => {

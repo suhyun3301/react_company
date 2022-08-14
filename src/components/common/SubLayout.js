@@ -1,9 +1,10 @@
 import Footer from './Footer'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function SubLayout({ name, sub, children }) {
   let title = name
   const section = useRef(null)
+  const subTitle = useRef(null)
 
   if (title === 'location') {
     title = `contact us`
@@ -19,7 +20,10 @@ function SubLayout({ name, sub, children }) {
     <section className={`container ${name}`} ref={section}>
       <div className="title-box">
         <h1>{title}</h1>
-        <h2>{sub.title}</h2>
+        <div className="sub-title" ref={subTitle}>
+          <h2>{sub.title}</h2>
+          {sub.count && <span className="num">{sub.count}</span>}
+        </div>
         <p>{sub.p}</p>
       </div>
 
