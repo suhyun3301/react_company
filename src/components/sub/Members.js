@@ -24,13 +24,17 @@ function Members() {
 
             <div className="input-item">
               <label htmlFor="password">password</label>
-              <input type="text" id="password" placeholder="6+ characters" />
+              <input
+                type="password"
+                id="password"
+                placeholder="6+ characters"
+              />
             </div>
 
             <div className="input-item">
               <label htmlFor="password2">Confirm Password</label>
               <input
-                type="text"
+                type="password"
                 id="password2"
                 placeholder="Please confirm your password"
               />
