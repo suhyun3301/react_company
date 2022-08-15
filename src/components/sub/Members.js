@@ -1,5 +1,6 @@
 import SubLayout from '../common/SubLayout'
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 
 function Members() {
   const subtitle = {
@@ -16,6 +17,8 @@ function Members() {
 
   const [Info, setInfo] = useState(memberShip)
   const [ErrMsg, setErrMsg] = useState({})
+  const [Submit, setSubmit] = useState(false)
+  const history = useHistory()
 
   const check = (input, e) => {
     const err = {}
@@ -30,7 +33,12 @@ function Members() {
       e.target.userID.style.borderColor = '#03afff'
     }
 
-    if (input.password.length < 6) {
+    if (
+      input.password.length < 6 ||
+      !eng.test(input.password) ||
+      !num.test(input.password) ||
+      !spc.test(input.password)
+    ) {
       err.password =
         'Include at least 6 characters in English, numbers, and special characters'
       e.target.password.style.borderColor = 'red'
@@ -64,6 +72,14 @@ function Members() {
     e.preventDefault()
     setErrMsg(check(Info, e))
   }
+
+  useEffect(() => {
+    const length = Object.keys(ErrMsg).length
+    if (length === 0 && Submit) {
+      alert('회원가입이 완료되었습니다. 메인 페이지로 이동합니다')
+      history.push('/')
+    }
+  }, [ErrMsg])
 
   return (
     <SubLayout name="members" sub={subtitle}>
@@ -157,7 +173,14 @@ function Members() {
           </div>
         </fieldset>
 
-        <button type="submit">Create account</button>
+        <button
+          type="submit"
+          onClick={() => {
+            setSubmit(true)
+          }}
+        >
+          Create account
+        </button>
       </form>
     </SubLayout>
   )
