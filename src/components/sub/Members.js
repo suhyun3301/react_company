@@ -84,7 +84,7 @@ function Members() {
   return (
     <SubLayout name="members" sub={subtitle}>
       <div className="sub-top"></div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="member-form">
         <fieldset className="required-box">
           <legend>Membership registration required</legend>
           <div className="input-list">

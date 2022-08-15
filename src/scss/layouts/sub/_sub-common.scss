@@ -18,7 +18,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    border-right: 1px solid #f2f3f4;
+    border-right: 1px solid $line-gray;
     @include glass;
     padding: 30px;
     width: 300px;
@@ -70,5 +70,9 @@
     top: -100%;
     margin-left: $nav-width + $subtitle-width;
     transition: 0.2s 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
   }
 }
