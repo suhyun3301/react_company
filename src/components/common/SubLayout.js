@@ -1,5 +1,6 @@
 import Footer from './Footer'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 function SubLayout({ name, sub, children }) {
   let title = name
@@ -29,7 +30,15 @@ function SubLayout({ name, sub, children }) {
 
       <div className="content-wrap">
         <div className="content">{children}</div>
-        <Footer />
+        <Switch>
+          <Route path="/department">
+            <Footer type={'fixed'} />
+          </Route>
+
+          <Route path="/">
+            <Footer />
+          </Route>
+        </Switch>
       </div>
     </section>
   )

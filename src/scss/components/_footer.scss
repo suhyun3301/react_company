@@ -4,7 +4,6 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // width: calc(100vw - ($nav-width + $subtitle-width));
 
   ul {
     display: flex;
@@ -22,5 +21,11 @@ footer {
     select {
       @include font(12px);
     }
+  }
+
+  &.fixed {
+    position: fixed;
+    bottom: 0;
+    width: calc(100vw - ($nav-width + $subtitle-width));
   }
 }

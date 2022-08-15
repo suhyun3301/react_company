@@ -1,8 +1,8 @@
 import { faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-function Footer() {
+function Footer({ type }) {
   return (
-    <footer>
+    <footer className={type}>
       <ul>
         <li>Privacy Policy</li>
         <li>Terms</li>
