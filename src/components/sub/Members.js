@@ -1,4 +1,5 @@
 import SubLayout from '../common/SubLayout'
+import { useEffect, useState } from 'react'
 
 function Members() {
   const subtitle = {
@@ -6,10 +7,68 @@ function Members() {
     p: "By signing up, you confirm that you've read and accepted our Terms of Service and Privacy Policy.",
   }
 
+  const memberShip = {
+    userID: '',
+    password: '',
+    password2: '',
+    userEmail: '',
+  }
+
+  const [Info, setInfo] = useState(memberShip)
+  const [ErrMsg, setErrMsg] = useState({})
+
+  const check = (input, e) => {
+    const err = {}
+    const eng = /[a-zA-Z]/
+    const num = /[0-9]/
+    const spc = /[~!@#$%^&*()_+`\[\]{}]/
+
+    if (input.userID.length < 5) {
+      err.userID = 'Please enter at least 5 characters'
+      e.target.userID.style.borderColor = 'red'
+    } else {
+      e.target.userID.style.borderColor = '#03afff'
+    }
+
+    if (input.password.length < 6) {
+      err.password =
+        'Include at least 6 characters in English, numbers, and special characters'
+      e.target.password.style.borderColor = 'red'
+    } else {
+      e.target.password.style.borderColor = '#03afff'
+    }
+
+    if (input.password !== input.password2 || !input.password2) {
+      err.password2 = 'Passwords do not match. Please enter it again'
+      e.target.password2.style.borderColor = 'red'
+    } else {
+      e.target.password2.style.borderColor = '#03afff'
+    }
+
+    if (input.userEmail.length < 8 || !/@/.test(input.userEmail)) {
+      err.userEmail = 'Include at least 8 characters of @'
+      e.target.userEmail.style.borderColor = 'red'
+    } else {
+      e.target.userEmail.style.borderColor = '#03afff'
+    }
+
+    return err
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setInfo({ ...Info, [name]: value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setErrMsg(check(Info, e))
+  }
+
   return (
     <SubLayout name="members" sub={subtitle}>
       <div className="sub-top"></div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <fieldset className="required-box">
           <legend>Membership registration required</legend>
           <div className="input-list">
@@ -18,8 +77,11 @@ function Members() {
               <input
                 type="text"
                 id="userID"
+                name="userID"
                 placeholder="Please enter your ID"
+                onChange={handleChange}
               />
+              <span className="err-msg">{ErrMsg.userID}</span>
             </div>
 
             <div className="input-item">
@@ -27,8 +89,11 @@ function Members() {
               <input
                 type="password"
                 id="password"
+                name="password"
                 placeholder="6+ characters"
+                onChange={handleChange}
               />
+              <span className="err-msg">{ErrMsg.password}</span>
             </div>
 
             <div className="input-item">
@@ -36,8 +101,11 @@ function Members() {
               <input
                 type="password"
                 id="password2"
+                name="password2"
                 placeholder="Please confirm your password"
+                onChange={handleChange}
               />
+              <span className="err-msg">{ErrMsg.password2}</span>
             </div>
 
             <div className="input-item">
@@ -45,8 +113,11 @@ function Members() {
               <input
                 type="mail"
                 id="userEmail"
+                name="userEmail"
                 placeholder="Please enter your email"
+                onChange={handleChange}
               />
+              <span className="err-msg">{ErrMsg.userEmail}</span>
             </div>
           </div>
         </fieldset>

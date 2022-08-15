@@ -1,5 +1,7 @@
-$gap: 80px;
+$fieldset-gap: 80px;
 $legend: 180px;
+$lable: 150px;
+$input-item-gap: 16px;
 
 .members {
   .content {
@@ -22,7 +24,7 @@ $legend: 180px;
       display: flex;
       align-items: baseline;
       width: 100%;
-      gap: $gap;
+      gap: $fieldset-gap;
 
       legend {
         float: left;
@@ -37,12 +39,14 @@ $legend: 180px;
           display: flex;
           flex-wrap: wrap;
           align-items: baseline;
-          gap: 16px;
+          column-gap: $input-item-gap;
+          row-gap: 10px;
+          margin-bottom: 24px;
 
           label,
           .label {
             display: inline-block;
-            width: 150px;
+            width: $lable;
             @include font(13px, 1.4);
             font-weight: 500;
             color: #777;
@@ -56,12 +60,17 @@ $legend: 180px;
             font-weight: 200;
             flex-grow: 1;
             border-bottom: 1px solid #f2f3f4;
-            padding: 16px 12px 16px 0;
+            padding: 10px 0;
           }
 
-          input[type='password'] {
-            letter-spacing: 2px;
+          input:focus-within {
+            border-bottom: 1px solid #777;
           }
+
+          // input:not(:placeholder-shown):not(:focus) {
+          //   border-bottom: 1px solid $blue;
+
+          // }
 
           .checkbox-group {
             flex-grow: 1;
@@ -89,6 +98,13 @@ $legend: 180px;
             }
           }
         }
+
+        .err-msg {
+          @include font(13px);
+          color: red;
+          width: 100%;
+          margin-left: $lable + $input-item-gap;
+        }
       }
     }
 
@@ -102,7 +118,7 @@ $legend: 180px;
 
     button[type='submit'] {
       cursor: pointer;
-      margin-left: $legend + $gap;
+      margin-left: $legend + $fieldset-gap;
       margin-top: 40px;
       background-color: #000;
       color: #fff;
