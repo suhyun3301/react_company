@@ -26,6 +26,7 @@ function SubLayout({ name, sub, children }) {
           {sub.count && <span className="num">{sub.count}</span>}
         </div>
         <p>{sub.p}</p>
+        {name === 'gallery' && <button>search</button>}
       </div>
 
       <div className="content-wrap">
