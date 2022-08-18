@@ -1,12 +1,12 @@
 .pop {
   position: fixed;
   top: 0;
-  left: 0;
+  left: $nav-width + $subtitle-width;
   z-index: $pop-level;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  width: 100%;
+  width: calc(100vw - ($nav-width + $subtitle-width));
   height: 100vh;
   padding: 4vw 8vw;
   background: rgba(0, 0, 0, 0.9);

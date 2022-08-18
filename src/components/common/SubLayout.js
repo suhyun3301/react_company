@@ -30,6 +30,7 @@ function SubLayout({ name, sub, children }) {
 
       <div className="content-wrap">
         <div className="content">{children}</div>
+
         <Switch>
           <Route path="/department">
             <Footer type={'fixed'} />

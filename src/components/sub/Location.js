@@ -12,15 +12,15 @@ function Location() {
 
   const mapInfos = [
     {
-      title: 'San Francisco (US HQ)',
-      address: '350 Bush Street Floor 13 San Francisco, CA 94104 United States',
-      phone: '+1 415 701 1110',
+      title: 'Pangyoyeok',
+      address: '160, Pangyoyeok-ro, Bundang-gu, Seongnam-si, Gyeonggi-do',
+      phone: '+82 031-8018-7750',
       latlng: new kakao.maps.LatLng(37.394776, 127.11116),
     },
     {
-      title: 'New York',
-      address: '888 Broadway Floor 4 New York, NY 10003 United States',
-      phone: '+1 646 755 3259',
+      title: 'Sinnonhyeon',
+      address: '102, Bongeunsa-ro, Gangnam-gu, Seoul, Republic of Korea',
+      phone: '+82 02-2656-0925',
       latlng: new kakao.maps.LatLng(37.5037059, 127.0241346),
     },
   ]
