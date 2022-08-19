@@ -18,49 +18,51 @@ function Gallery() {
 
     return (
       <>
-        <div className="img-box">
-          <img
-            src={`https://live.staticflickr.com/${Items[i].server}/${Items[i].id}_${Items[i].secret}_b.jpg`}
-            alt={Items[i].title}
-          />
-        </div>
-
-        <div className="img-info">
-          <div className="avatar">
+        <div className="wrap">
+          <div className="img-box">
             <img
-              src={`http://farm${Items[i].farm}.staticflickr.com/${Items[i].server}/buddyicons/${Items[i].owner}.jpg`}
-              alt={Items[i].owner}
-              onError={(e) => {
-                e.target.setAttribute(
-                  'src',
-                  'https://www.flickr.com/images/buddyicon.gif'
-                )
-              }}
+              src={`https://live.staticflickr.com/${Items[i].server}/${Items[i].id}_${Items[i].secret}_b.jpg`}
+              alt={Items[i].title}
             />
           </div>
 
-          <div className="info">
-            <h1 className="title">{Items[i].title}</h1>
-            <span className="owner">{Items[i].owner}</span>
-            <strong className="views">
-              <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-              {Items[i].views}
-            </strong>
-            <p>{Items[i].description._content}</p>
+          <div className="img-info">
+            <div className="avatar">
+              <img
+                src={`http://farm${Items[i].farm}.staticflickr.com/${Items[i].server}/buddyicons/${Items[i].owner}.jpg`}
+                alt={Items[i].owner}
+                onError={(e) => {
+                  e.target.setAttribute(
+                    'src',
+                    'https://www.flickr.com/images/buddyicon.gif'
+                  )
+                }}
+              />
+            </div>
 
-            <span className="tags">
-              {tags !== 0
-                ? Items[i].tags.split(' ').map((tag, i) => {
-                    if (i >= 10) return
+            <div className="info">
+              <h1 className="title">{Items[i].title}</h1>
+              <span className="owner">{Items[i].owner}</span>
+              <strong className="views">
+                <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
+                {Items[i].views}
+              </strong>
+              <p>{Items[i].description._content}</p>
 
-                    return (
-                      <span key={i} className="tag">
-                        {tag}
-                      </span>
-                    )
-                  })
-                : ''}
-            </span>
+              <span className="tags">
+                {tags !== 0
+                  ? Items[i].tags.split(' ').map((tag, i) => {
+                      if (i >= 10) return
+
+                      return (
+                        <span key={i} className="tag">
+                          {tag}
+                        </span>
+                      )
+                    })
+                  : ''}
+              </span>
+            </div>
           </div>
         </div>
       </>
@@ -87,7 +89,7 @@ function Gallery() {
     <SubLayout name="gallery" sub={subtitle}>
       <div className="show">
         {Items[0] !== undefined ? (
-          <article className="on">{imgOn(Index)}</article>
+          <article className="sticky">{imgOn(Index)}</article>
         ) : (
           ' '
         )}

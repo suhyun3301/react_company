@@ -9,7 +9,7 @@
   .show {
     border-right: 1px solid $line-gray;
 
-    .on {
+    .sticky {
       position: sticky;
       top: 0;
       width: 100%;
@@ -17,6 +17,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .wrap {
+        overflow-y: scroll;
+        height: 100vh;
+        padding-bottom: 100px;
+      }
 
       .img-box {
         width: 34vw;
