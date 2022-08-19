@@ -1,6 +1,65 @@
 .gallery {
   $width: $nav-width + $subtitle-width;
 
+  .title-box {
+    .btns-show {
+      margin-top: 32px;
+
+      .btn-show-search {
+        width: 100%;
+        border: 1px solid $line-gray;
+        border-radius: 100px;
+        position: relative;
+        margin-bottom: 72px;
+
+        input {
+          display: inline-block;
+          width: 100%;
+          padding: 8px 30px 8px 12px;
+        }
+
+        button {
+          @include center-y;
+          right: 12px;
+          cursor: pointer;
+          opacity: 0.5;
+        }
+      }
+
+      .btn-show {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        width: 100%;
+        border-bottom: 1px solid $line-gray;
+        padding: 8px 0;
+        // margin-bottom: 20px;
+
+        span {
+          @include font(15px, 20px);
+          font-weight: 400;
+          text-transform: uppercase;
+          transition: 0.2s;
+          position: relative;
+        }
+
+        .badge-num {
+          @include font(12px, 16px);
+          position: relative;
+          top: auto;
+          right: auto;
+        }
+
+        &:hover {
+          span {
+            opacity: 0.4;
+          }
+        }
+      }
+    }
+  }
+
   .content {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

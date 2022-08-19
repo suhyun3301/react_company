@@ -1,6 +1,9 @@
 import Footer from './Footer'
 import { useEffect, useRef } from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function SubLayout({ name, sub, children }) {
   let title = name
@@ -23,10 +26,29 @@ function SubLayout({ name, sub, children }) {
         <h1>{title}</h1>
         <div className="sub-title" ref={subTitle}>
           <h2>{sub.title}</h2>
-          {sub.count && <span className="num">{sub.count}</span>}
+          {sub.count && <span className="badge-num">{sub.count}</span>}
         </div>
         <p>{sub.p}</p>
-        {name === 'gallery' && <button>search</button>}
+
+        {name === 'gallery' && (
+          <div className="btns-show">
+            <div className="btn-show-search">
+              <input type="text" />
+              <button type="button">
+                <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
+              </button>
+            </div>
+
+            <button className="btn-show" type="button">
+              <span>Atlassian Blog</span>
+            </button>
+
+            <button className="btn-show" type="button">
+              <span>Flickr interest</span>
+              <strong className="badge-num">{sub.flickr}</strong>
+            </button>
+          </div>
+        )}
       </div>
 
       <div className="content-wrap">

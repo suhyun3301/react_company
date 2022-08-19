@@ -5,13 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from 'axios'
 
 function Gallery() {
-  const subtitle = {
-    title: 'Work Life',
-    p: 'PRODUCTS & NEWS',
-  }
-
   const [Items, setItems] = useState([])
   const [Index, setIndex] = useState(0)
+  const subtitle = {
+    title: 'Work Life',
+    p: 'Work Life is now a live event! Atlassian Presents: Work Life is happening Sept. 29th in San Francisco. Register for free.',
+    flickr: Items.length,
+  }
 
   const imgOn = (i) => {
     const tags = Items[i].tags.length
@@ -103,7 +103,6 @@ function Gallery() {
               className="flicker"
               onClick={() => {
                 setIndex(i)
-                console.log(Index)
               }}
             >
               <div className="img-box">
