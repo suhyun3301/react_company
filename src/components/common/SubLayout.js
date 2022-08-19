@@ -33,7 +33,7 @@ function SubLayout({ name, sub, children }) {
         {name === 'gallery' && (
           <div className="btns-show">
             <div className="btn-show-search">
-              <input type="text" />
+              <input type="text" defaultValue={sub.tag} />
               <button type="button">
                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
               </button>

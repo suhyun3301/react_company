@@ -34,7 +34,6 @@
         width: 100%;
         border-bottom: 1px solid $line-gray;
         padding: 8px 0;
-        // margin-bottom: 20px;
 
         span {
           @include font(15px, 20px);
@@ -163,6 +162,7 @@
               margin-right: 4px;
               margin-bottom: 8px;
               color: #777;
+              cursor: pointer;
 
               &:last-child {
                 margin-right: 0;
