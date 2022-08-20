@@ -122,6 +122,8 @@
           .owner {
             @include font(12px);
             color: #777;
+            cursor: pointer;
+            transition: 0.2;
 
             &::after {
               content: '';
@@ -130,6 +132,11 @@
               height: 11px;
               margin: 0 8px;
               background-color: #e0e0e0;
+            }
+
+            &:hover {
+              color: #000;
+              text-decoration: underline;
             }
           }
 
@@ -163,9 +170,15 @@
               margin-bottom: 8px;
               color: #777;
               cursor: pointer;
+              transition: 0.2s;
 
               &:last-child {
                 margin-right: 0;
+              }
+
+              &:hover {
+                background-color: $line-gray;
+                color: #000;
               }
             }
           }
