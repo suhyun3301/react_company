@@ -41,6 +41,8 @@ function Community() {
 
   const inputTitle = useRef(null)
   const inputContent = useRef(null)
+  const titleEdit = useRef(null)
+  const contentEdit = useRef(null)
   const [Posts, setPosts] = useState([])
   const [Edit, setEdit] = useState(true)
 
@@ -71,9 +73,41 @@ function Community() {
   }
 
   const editPost = (i) => {
+    if (!Edit) return
+    setEdit(false)
+
     setPosts(
       Posts.map((post, index) => {
         if (i === index) post.edit = true
+        return post
+      })
+    )
+  }
+
+  const updatePost = (i) => {
+    if (!titleEdit.current.value.trim() || !contentEdit.current.value.trim()) {
+      resetForm()
+      return alert('수정할 제목과 본문을 모두 입력하세요.')
+    }
+
+    Posts.map((post, index) => {
+      if (i === index) {
+        post.title = titleEdit.current.value
+        post.content = contentEdit.current.value
+        post.edit = false
+      }
+      return post
+    })
+
+    setEdit(true)
+  }
+
+  const cancelPost = (i) => {
+    setEdit(true)
+
+    setPosts(
+      Posts.map((post, index) => {
+        if (i === index) post.edit = false
         return post
       })
     )
@@ -144,21 +178,32 @@ function Community() {
                       type="text"
                       placeholder="title"
                       name="Title"
-                      ref={inputTitle}
+                      ref={titleEdit}
                       defaultValue={post.title}
                     />
                     <textarea
                       name="content"
                       placeholder="Content"
-                      ref={inputContent}
+                      ref={contentEdit}
                       defaultValue={post.content}
                     ></textarea>
 
                     <div className="btns-edit">
-                      <button type="button" onClick={resetForm}>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          cancelPost(i)
+                        }}
+                      >
                         <FontAwesomeIcon icon={faXmarkSquare}></FontAwesomeIcon>
                       </button>
-                      <button type="button" onClick={showForm}>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          updatePost(i)
+                        }}
+                      >
                         <FontAwesomeIcon icon={faSquareCheck}></FontAwesomeIcon>
                       </button>
                     </div>

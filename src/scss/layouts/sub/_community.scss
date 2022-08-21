@@ -94,10 +94,15 @@
         color: #fff;
         height: 56px;
         border-radius: 4px;
+        transition: 0.2s;
 
         &:nth-of-type(1) {
           background-color: #f6f6f6;
           color: #000;
+        }
+
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
@@ -134,9 +139,23 @@
           button {
             color: #777;
             cursor: pointer;
+            transition: 0.2s;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            @include font(13px, 28px);
+            text-align: center;
 
-            &:nth-of-type(1) {
-              margin-right: 12px;
+            &:hover {
+              &:nth-of-type(1) {
+                background-color: #f6f6f6;
+                color: #000;
+              }
+
+              &:nth-of-type(2) {
+                background-color: rgba($color: #ff4800, $alpha: 0.1);
+                color: #ff4800;
+              }
             }
           }
         }
@@ -157,7 +176,7 @@
           border-radius: 4px;
           font-weight: 300;
           padding: 4px 8px;
-          @include font(14px, 1.5);
+          @include font(13px, 1.5);
         }
 
         .btns-edit {
@@ -168,11 +187,15 @@
           button {
             @include font(19px);
             color: $blue;
+            transition: 0.2;
 
             &:nth-of-type(1) {
               margin-right: 6px;
-              color: #000;
-              opacity: 0.4;
+              color: #999;
+            }
+
+            &:hover {
+              filter: contrast(1.5);
             }
           }
         }
