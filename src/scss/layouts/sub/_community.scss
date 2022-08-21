@@ -1,0 +1,11 @@
+.community {
+  .content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .board-input {
+    border-right: 1px solid $line-gray;
+    height: 100vh;
+  }
+}
