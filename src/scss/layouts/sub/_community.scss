@@ -141,6 +141,42 @@
           }
         }
       }
+
+      .input-edit-list {
+        padding-right: 56px;
+        position: relative;
+
+        input {
+          margin-bottom: 4px;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          border: 1px solid $line-gray;
+          border-radius: 4px;
+          font-weight: 300;
+          padding: 4px 8px;
+          @include font(14px, 1.5);
+        }
+
+        .btns-edit {
+          position: absolute;
+          right: 0;
+          top: 0;
+
+          button {
+            @include font(19px);
+            color: $blue;
+
+            &:nth-of-type(1) {
+              margin-right: 6px;
+              color: #000;
+              opacity: 0.4;
+            }
+          }
+        }
+      }
     }
   }
 }

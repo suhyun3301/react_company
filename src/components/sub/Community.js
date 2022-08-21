@@ -2,6 +2,8 @@ import SubLayout from '../common/SubLayout'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import { faXmarkSquare } from '@fortawesome/free-solid-svg-icons'
+import { faSquareCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useRef, useEffect } from 'react'
 
@@ -40,6 +42,7 @@ function Community() {
   const inputTitle = useRef(null)
   const inputContent = useRef(null)
   const [Posts, setPosts] = useState([])
+  const [Edit, setEdit] = useState(true)
 
   const resetForm = () => {
     inputTitle.current.value = ''
@@ -58,11 +61,22 @@ function Community() {
       { title: inputTitle.current.value, content: inputContent.current.value },
       ...Posts,
     ])
+
+    resetForm()
   }
 
   const deletePost = (i) => {
     const newPosts = Posts.filter((_, index) => i !== index)
     setPosts(newPosts)
+  }
+
+  const editPost = (i) => {
+    setPosts(
+      Posts.map((post, index) => {
+        if (i === index) post.edit = true
+        return post
+      })
+    )
   }
 
   useEffect(() => {
@@ -124,23 +138,57 @@ function Community() {
           {Posts.map((post, i) => {
             return (
               <li className="board-item" key={i}>
-                <h2>{post.title}</h2>
-                <p>{post.content}</p>
+                {post.edit ? (
+                  <div className="input-edit-list">
+                    <input
+                      type="text"
+                      placeholder="title"
+                      name="Title"
+                      ref={inputTitle}
+                      defaultValue={post.title}
+                    />
+                    <textarea
+                      name="content"
+                      placeholder="Content"
+                      ref={inputContent}
+                      defaultValue={post.content}
+                    ></textarea>
 
-                <div className="btns-community-ouput">
-                  <button type="button">
-                    <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-                  </button>
+                    <div className="btns-edit">
+                      <button type="button" onClick={resetForm}>
+                        <FontAwesomeIcon icon={faXmarkSquare}></FontAwesomeIcon>
+                      </button>
+                      <button type="button" onClick={showForm}>
+                        <FontAwesomeIcon icon={faSquareCheck}></FontAwesomeIcon>
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <h2>{post.title}</h2>
+                    <p>{post.content}</p>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      deletePost(i)
-                    }}
-                  >
-                    <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
-                  </button>
-                </div>
+                    <div className="btns-community-ouput">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          editPost(i)
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          deletePost(i)
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+                      </button>
+                    </div>
+                  </>
+                )}
               </li>
             )
           })}
