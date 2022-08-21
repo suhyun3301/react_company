@@ -42,7 +42,6 @@
 
       button {
         @include font(13px);
-        cursor: pointer;
         text-transform: capitalize;
         text-decoration: underline;
       }
