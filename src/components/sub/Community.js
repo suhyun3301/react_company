@@ -1,5 +1,7 @@
 import SubLayout from '../common/SubLayout'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useRef, useEffect } from 'react'
 
@@ -71,13 +73,29 @@ function Community() {
           </div>
         </div>
 
-        <div className="btns-community">
+        <div className="btns-community-input">
           <button type="button">Cancel</button>
           <button type="button">Registration</button>
         </div>
       </div>
 
-      <div className="board-ouput"></div>
+      <div className="board-ouput">
+        <ul className="board-list">
+          <li className="board-item">
+            <h2>ddd</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+            <div className="btns-community-ouput">
+              <button type="button">
+                <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+              </button>
+              <button type="button">
+                <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
     </SubLayout>
   )
 }
