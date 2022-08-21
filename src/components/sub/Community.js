@@ -28,7 +28,6 @@ function Community() {
     'December',
   ]
   const day = date.getDate()
-
   const nowClock = () => {
     const date = new Date()
     const hours = String(date.getHours()).padStart(2, '0')
@@ -37,6 +36,29 @@ function Community() {
     return `${hours}:${mins}:${secs}`
   }
   const [Time, setTime] = useState(nowClock)
+
+  const inputTitle = useRef(null)
+  const inputContent = useRef(null)
+  const [Posts, setPosts] = useState([])
+
+  const resetForm = () => {
+    inputTitle.current.value = ''
+    inputContent.current.value = ''
+  }
+
+  const showForm = () => {
+    if (
+      !inputTitle.current.value.trim() ||
+      !inputContent.current.value.trim()
+    ) {
+      return alert('내용을 입력하세요')
+    }
+
+    setPosts([
+      { title: inputTitle.current.value, content: inputContent.current.value },
+      ...Posts,
+    ])
+  }
 
   useEffect(() => {
     setInterval(() => {
@@ -68,32 +90,49 @@ function Community() {
 
         <div className="input-list">
           <div className="input-item">
-            <input type="text" placeholder="title" name="Title" />
-            <textarea name="content" placeholder="Content"></textarea>
+            <input
+              type="text"
+              placeholder="title"
+              name="Title"
+              ref={inputTitle}
+            />
+            <textarea
+              name="content"
+              placeholder="Content"
+              ref={inputContent}
+            ></textarea>
           </div>
         </div>
 
         <div className="btns-community-input">
-          <button type="button">Cancel</button>
-          <button type="button">Registration</button>
+          <button type="button" onClick={resetForm}>
+            Cancel
+          </button>
+          <button type="button" onClick={showForm}>
+            Registration
+          </button>
         </div>
       </div>
 
       <div className="board-ouput">
         <ul className="board-list">
-          <li className="board-item">
-            <h2>ddd</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+          {Posts.map((post, i) => {
+            return (
+              <li className="board-item" key={i}>
+                <h2>{post.title}</h2>
+                <p>{post.content}</p>
 
-            <div className="btns-community-ouput">
-              <button type="button">
-                <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
-              </button>
-              <button type="button">
-                <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
-              </button>
-            </div>
-          </li>
+                <div className="btns-community-ouput">
+                  <button type="button">
+                    <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
+                  </button>
+                  <button type="button">
+                    <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+                  </button>
+                </div>
+              </li>
+            )
+          })}
         </ul>
       </div>
     </SubLayout>
