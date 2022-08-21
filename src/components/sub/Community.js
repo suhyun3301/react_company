@@ -60,6 +60,11 @@ function Community() {
     ])
   }
 
+  const deletePost = (i) => {
+    const newPosts = Posts.filter((_, index) => i !== index)
+    setPosts(newPosts)
+  }
+
   useEffect(() => {
     setInterval(() => {
       setTime(nowClock)
@@ -126,7 +131,13 @@ function Community() {
                   <button type="button">
                     <FontAwesomeIcon icon={faPenToSquare}></FontAwesomeIcon>
                   </button>
-                  <button type="button">
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      deletePost(i)
+                    }}
+                  >
                     <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
                   </button>
                 </div>
