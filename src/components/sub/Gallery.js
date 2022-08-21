@@ -82,7 +82,7 @@ function Gallery() {
               <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
               {Items[i].views}
             </strong>
-            <p>{Items[i].description._content}</p>
+            <p>{Items[i].description._content.replace(/(<([^>]+)>)/gi, '')}</p>
 
             <span className="tags">
               {tags !== 0
