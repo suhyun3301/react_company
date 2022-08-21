@@ -1,4 +1,6 @@
 import SubLayout from '../common/SubLayout'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState, useRef, useEffect } from 'react'
 
 function Community() {
@@ -8,7 +10,21 @@ function Community() {
   }
 
   const date = new Date()
-  const month = date.getMonth() + 1
+  const month = date.getMonth()
+  const monthString = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
   const day = date.getDate()
 
   const nowClock = () => {
@@ -29,8 +45,36 @@ function Community() {
   return (
     <SubLayout name="community" sub={subtitle}>
       <div className="board-input">
-        {`${month} ${day}`}
-        <p>{nowClock()}</p>
+        <div className="board-input-top">
+          <div className="title">
+            <h1>
+              Send <br />
+              comments
+            </h1>
+
+            <div className="today">
+              <span className="day">{day}</span>
+              <span className="month">{monthString[month]}</span>
+            </div>
+          </div>
+
+          <p className="time">
+            <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
+            <span>{nowClock()}</span>
+          </p>
+        </div>
+
+        <div className="input-list">
+          <div className="input-item">
+            <input type="text" placeholder="title" name="Title" />
+            <textarea name="content" placeholder="Content"></textarea>
+          </div>
+        </div>
+
+        <div className="btns-community">
+          <button type="button">Cancel</button>
+          <button type="button">Registration</button>
+        </div>
       </div>
 
       <div className="board-ouput"></div>
