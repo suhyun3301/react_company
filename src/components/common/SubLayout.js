@@ -2,13 +2,16 @@ import Footer from './Footer'
 import { useEffect, useRef } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import { faArrowUpRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function SubLayout({ name, sub, children }) {
   let title = name
   const section = useRef(null)
   const subTitle = useRef(null)
+  const inputSerch = useRef(null)
+  const showFlickrSerch = () => {
+    sub.show({ type: 'search', tag: inputSerch.current.value })
+  }
 
   if (title === 'location') {
     title = `contact us`
@@ -33,8 +36,15 @@ function SubLayout({ name, sub, children }) {
         {name === 'gallery' && (
           <div className="btns-show">
             <div className="btn-show-search">
-              <input type="text" defaultValue={sub.tag} />
-              <button type="button">
+              <input
+                type="text"
+                defaultValue={sub.tag}
+                ref={inputSerch}
+                onKeyUp={(e) => {
+                  if (e.key === 'Enter') showFlickrSerch()
+                }}
+              />
+              <button type="button" onClick={showFlickrSerch}>
                 <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
               </button>
             </div>
@@ -43,7 +53,13 @@ function SubLayout({ name, sub, children }) {
               <span>Atlassian Blog</span>
             </button>
 
-            <button className="btn-show" type="button">
+            <button
+              className="btn-show"
+              type="button"
+              onClick={() => {
+                sub.show({ type: 'interest' })
+              }}
+            >
               <span>Flickr interest</span>
               <strong className="badge-num">{sub.flickr}</strong>
             </button>

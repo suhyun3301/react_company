@@ -8,6 +8,7 @@ function Gallery() {
   const [Items, setItems] = useState([])
   const [Index, setIndex] = useState(0)
   const [Tag, setTag] = useState([])
+  const [Show, setShow] = useState(false)
 
   const getFlickr = async (opt) => {
     const key = 'fc53ebefe80f178c0979785406ddb3d5'
@@ -40,6 +41,7 @@ function Gallery() {
     p: 'Work Life is now a live event! Atlassian Presents: Work Life is happening Sept. 29th in San Francisco. Register for free.',
     flickr: Items.length,
     tag: Tag,
+    show: getFlickr,
   }
 
   const imgOn = (i) => {
