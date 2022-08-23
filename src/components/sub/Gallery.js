@@ -2,48 +2,22 @@ import SubLayout from '../common/SubLayout'
 import { useState, useEffect, useRef } from 'react'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import axios from 'axios'
+import { useSelector, useDispatch } from 'react-redux'
+import * as types from '../../redux/actionType'
 
 function Gallery() {
-  const [Items, setItems] = useState([])
+  const dispatch = useDispatch()
+  const Items = useSelector((store) => store.flickrReducer.flickr)
   const [Index, setIndex] = useState(0)
   const [Tag, setTag] = useState([])
-  const [Show, setShow] = useState(false)
-
-  const getFlickr = async (opt) => {
-    const key = 'fc53ebefe80f178c0979785406ddb3d5'
-    const num = 100
-    const extras = 'tags, description, views'
-    const method_search = 'flickr.photos.search'
-    const method_interest = 'flickr.interestingness.getList'
-    const method_user = 'flickr.people.getPhotos'
-
-    let url = ''
-    if (opt.type === 'interest') {
-      url = `https://www.flickr.com/services/rest/?method=${method_interest}&per_page=${num}&api_key=${key}&extras=${extras}&format=json&nojsoncallback=1`
-    }
-
-    if (opt.type === 'search') {
-      url = `https://www.flickr.com/services/rest/?method=${method_search}&per_page=${num}&api_key=${key}&extras=${extras}&format=json&nojsoncallback=1&tags=${opt.tag}`
-    }
-
-    if (opt.type === 'user') {
-      url = `https://www.flickr.com/services/rest/?method=${method_user}&per_page=${num}&api_key=${key}&extras=${extras}&format=json&nojsoncallback=1&tags1&user_id=${opt.owner}`
-    }
-
-    await axios.get(url).then((json) => {
-      if (json.data.photos.photo.length === 0)
-        return alert('해당 검색어의 결과값이 없습니다.')
-      setItems(json.data.photos.photo)
-    })
-  }
+  const [Show, setShow] = useState({ type: 'interest' })
 
   const subtitle = {
     title: 'Work Life',
     p: 'Work Life is now a live event! Atlassian Presents: Work Life is happening Sept. 29th in San Francisco. Register for free.',
     flickr: Items.length,
     tag: Tag,
-    show: getFlickr,
+    show: Show,
   }
 
   const imgOn = (i) => {
@@ -77,7 +51,7 @@ function Gallery() {
             <span
               className="owner"
               onClick={(e) => {
-                getFlickr({ type: 'user', owner: e.target.innerText })
+                setShow({ type: 'user', owner: e.target.innerText })
               }}
             >
               {Items[i].owner}
@@ -99,7 +73,7 @@ function Gallery() {
                         className="tag"
                         onClick={(e) => {
                           setTag(e.target.innerText)
-                          getFlickr({
+                          setShow({
                             type: 'search',
                             tag: `${e.target.innerText}`,
                           })
@@ -118,8 +92,8 @@ function Gallery() {
   }
 
   useEffect(() => {
-    getFlickr({ type: 'interest' })
-  }, [])
+    dispatch({ type: types.FLICKR.start, Show })
+  }, [Show])
 
   return (
     <SubLayout name="gallery" sub={subtitle}>

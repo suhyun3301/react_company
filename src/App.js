@@ -1,4 +1,7 @@
 import { Route } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import * as types from './redux/actionType'
 
 import Header from './components/common/Header'
 
@@ -15,6 +18,15 @@ import Members from './components/sub/Members'
 import './scss/style.scss'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: types.FLICKR.start,
+      Opt: { type: 'interest' },
+    })
+  }, [])
+
   return (
     <>
       <Header />
