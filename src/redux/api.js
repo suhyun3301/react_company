@@ -32,3 +32,8 @@ export const getYoutube = async () => {
 
   return await axios.get(url)
 }
+
+export const getMembers = async () => {
+  const url = process.env.PUBLIC_URL + '/DB/members.json'
+  return await axios.get(url)
+}

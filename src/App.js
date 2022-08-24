@@ -27,6 +27,7 @@ function App() {
     })
 
     dispatch({ type: types.YOUTUBE.start })
+    dispatch({ type: types.MEMBERS.start })
   }, [])
 
   return (

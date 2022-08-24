@@ -1,5 +1,5 @@
 import { takeLatest, all, put, fork, call } from 'redux-saga/effects'
-import { getFlickr, getYoutube } from './api'
+import { getFlickr, getYoutube, getMembers } from './api'
 import * as types from './actionType'
 
 export function* returnFlickr(action) {
@@ -29,6 +29,18 @@ export function* callYoutube() {
   yield takeLatest(types.YOUTUBE.start, returnYoutube)
 }
 
+export function* returnMembers() {
+  try {
+    const response = yield call(getMembers)
+    yield put({ type: types.MEMBERS.success, payload: response.data.members })
+  } catch (err) {
+    yield put({ type: types.MEMBERS.err, payload: err })
+  }
+}
+export function* callMembers() {
+  yield takeLatest(types.MEMBERS.start, returnMembers)
+}
+
 export default function* rootSaga() {
-  yield all([fork(callFlickr), fork(callYoutube)])
+  yield all([fork(callFlickr), fork(callYoutube), fork(callMembers)])
 }

@@ -1,21 +1,14 @@
 import SubLayout from '../common/SubLayout'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 function Department() {
-  const [Members, setMembers] = useState([])
+  const Members = useSelector((store) => store.memberReducer.members)
 
   const subtitle = {
     title: 'About Trello',
     p: 'What’s behind the boards.',
     count: Members.length,
   }
-
-  useEffect(() => {
-    axios.get(process.env.PUBLIC_URL + '/DB/members.json').then((json) => {
-      setMembers(json.data.members)
-    })
-  }, [])
 
   return (
     <SubLayout name="department" sub={subtitle}>
