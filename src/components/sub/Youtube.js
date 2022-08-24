@@ -1,14 +1,16 @@
 import SubLayout from '../common/SubLayout'
 import Pop from '../common/Pop'
+
 import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+
 function Youtube() {
-  const [Videos, setVideos] = useState([])
   const [Show, setShow] = useState(false)
   const [Index, setIndex] = useState(0)
+  const Videos = useSelector((store) => store.youtubeReducer.youtube)
 
   const subtitle = {
     title: 'Trello Views',
@@ -17,14 +19,7 @@ function Youtube() {
   }
 
   useEffect(() => {
-    const key = 'AIzaSyDSdFyxbZ_BnbSiuPS3M6Ug9mM75LfRyJg'
-    const playList = 'PL_zwLMPR5YRLPV-Ni5MG2mds5p6RwupoD'
-    const num = 10
-    const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&playlistId=${playList}&maxResults=${num}`
-
-    axios.get(url).then((json) => {
-      setVideos(json.data.items)
-    })
+    console.log(Videos)
   }, [])
 
   return (

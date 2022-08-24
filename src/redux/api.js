@@ -23,3 +23,12 @@ export const getFlickr = async (opt) => {
 
   return await axios.get(url)
 }
+
+export const getYoutube = async () => {
+  const key = 'AIzaSyDSdFyxbZ_BnbSiuPS3M6Ug9mM75LfRyJg'
+  const playList = 'PL_zwLMPR5YRLPV-Ni5MG2mds5p6RwupoD'
+  const num = 10
+  const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${key}&playlistId=${playList}&maxResults=${num}`
+
+  return await axios.get(url)
+}

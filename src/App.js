@@ -25,6 +25,8 @@ function App() {
       type: types.FLICKR.start,
       Opt: { type: 'interest' },
     })
+
+    dispatch({ type: types.YOUTUBE.start })
   }, [])
 
   return (
