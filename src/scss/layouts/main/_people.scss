@@ -1,0 +1,49 @@
+.main-box.people {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 $main-padding;
+
+  h1 {
+    margin-bottom: 40px;
+  }
+
+  > p,
+  .member-item {
+    width: calc(100% / 3);
+  }
+
+  > p {
+    padding-right: 60px;
+  }
+
+  .member-item {
+    padding: 0 20px 30px;
+    margin-bottom: 20px;
+
+    .member-thum {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 10px;
+
+      img {
+        @include object-fit;
+      }
+    }
+
+    .member-info {
+      font-size: 0;
+
+      .position {
+        @include font(12px);
+        display: inline-block;
+        width: 100%;
+        color: #777;
+        margin-bottom: 4px;
+      }
+
+      .name {
+        @include font(16px);
+      }
+    }
+  }
+}
