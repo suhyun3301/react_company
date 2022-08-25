@@ -1,0 +1,127 @@
+$swiper-left: 55px;
+$swiper-scrollbar-top: 390px;
+$z-idex-swiper-1: 1;
+$z-idex-swiper-2: 2;
+
+.main-box.video {
+  padding-left: 80px;
+
+  .inner {
+    display: flex;
+    padding: 100px 0 100px 60px;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      background-color: #eaf3ff;
+      height: 520px;
+      top: 0;
+      left: 0;
+      z-index: $z-idex-swiper-1;
+    }
+  }
+
+  .text {
+    padding-right: 100px;
+    width: 280px;
+    flex-shrink: 0;
+    height: 300px;
+    position: relative;
+    z-index: $z-idex-swiper-2;
+  }
+
+  .swiper-video {
+    position: static;
+
+    .swiper-slide {
+      width: 80%;
+    }
+
+    article {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .thum {
+      width: 100%;
+      aspect-ratio: 16/9;
+      iframe {
+        @include object-fit;
+      }
+    }
+
+    .desc {
+      width: 48%;
+      padding: 40px;
+
+      .title {
+        @include font(13px, 1.5);
+        font-weight: 500;
+        @include line(1);
+        margin-bottom: 4px;
+      }
+
+      p {
+        @include font(13px, 1.5);
+        font-weight: 300;
+        @include line(2);
+        color: #777;
+      }
+    }
+
+    .thum-img {
+      width: 50%;
+
+      img {
+        @include object-fit;
+      }
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+      color: #000;
+      top: auto;
+      bottom: 240px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid #000;
+
+      &::after {
+        @include font(12px);
+      }
+    }
+
+    .swiper-button-prev {
+      left: $swiper-left;
+    }
+
+    .swiper-button-next {
+      right: auto;
+      left: calc($swiper-left + 50px);
+    }
+
+    .swiper-scrollbar {
+      left: $swiper-left;
+      bottom: auto;
+      width: 180px;
+      top: $swiper-scrollbar-top;
+      height: 2px;
+
+      .swiper-scrollbar-drag {
+        background-color: #000;
+      }
+    }
+
+    .swiper-pagination {
+      @include font(10px);
+      width: auto;
+      bottom: auto;
+      left: $swiper-left;
+      top: calc($swiper-scrollbar-top + 15px);
+    }
+  }
+}
