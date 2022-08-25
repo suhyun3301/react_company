@@ -5,8 +5,7 @@ import * as types from './redux/actionType'
 
 import Header from './components/common/Header'
 
-import Visual from './components/main/Visual'
-import Content from './components/main/Content'
+import Main from './components/main/Main'
 
 import Department from './components/sub/Department'
 import Community from './components/sub/Community'
@@ -34,11 +33,7 @@ function App() {
     <>
       <Header />
 
-      <Route exact path="/">
-        <Visual />
-        <Content />
-      </Route>
-
+      <Route exact path="/" component={Main} />
       <Route path="/department" component={Department} />
       <Route path="/community" component={Community} />
       <Route path="/gallery" component={Gallery} />

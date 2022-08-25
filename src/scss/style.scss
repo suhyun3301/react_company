@@ -16,6 +16,12 @@
 @import 'layouts/common';
 @import 'layouts/main';
 
+@import 'layouts/main/visual';
+@import 'layouts/main/content';
+@import 'layouts/main/people';
+@import 'layouts/main/news';
+@import 'layouts/main/video';
+
 @import 'layouts/sub/sub-common';
 @import 'layouts/sub/department';
 @import 'layouts/sub/community';

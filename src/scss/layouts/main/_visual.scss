@@ -1,0 +1,23 @@
+.main-box.visual {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 $main-padding;
+
+  h1 {
+    @include font(56px, 1.2);
+  }
+
+  p {
+    width: 25%;
+  }
+
+  figure {
+    width: 68%;
+
+    video {
+      @include object-fit;
+    }
+  }
+}
