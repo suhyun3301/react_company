@@ -1,0 +1,23 @@
+.main-box.content {
+  margin-bottom: 300px;
+  padding: 0 $main-padding;
+  display: flex;
+  justify-content: space-between;
+
+  h1 {
+    line-height: 1.4;
+    padding-right: 80px;
+  }
+
+  .wrap {
+    > p {
+      margin-bottom: 20px;
+    }
+
+    .count {
+      display: flex;
+      gap: 40px;
+      margin-top: 80px;
+    }
+  }
+}
