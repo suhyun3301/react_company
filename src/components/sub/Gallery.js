@@ -1,13 +1,14 @@
 import SubLayout from '../common/SubLayout'
-import { useState, useEffect, useRef } from 'react'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as types from '../../redux/actionType'
 
 function Gallery() {
   const dispatch = useDispatch()
   const Items = useSelector((store) => store.flickrReducer.flickr)
+  // const [Itmes, setItmes] = useState(Item)
   const [Index, setIndex] = useState(0)
   const [Tag, setTag] = useState([])
   const [Show, setShow] = useState({ type: 'interest' })
@@ -18,6 +19,12 @@ function Gallery() {
     flickr: Items.length,
     tag: Tag,
     show: Show,
+  }
+
+  const showUser = (e) => {
+    setShow({ type: 'user', owner: e.target.innerText })
+    console.log(Show)
+    console.log(Items)
   }
 
   const imgOn = (i) => {
@@ -48,12 +55,7 @@ function Gallery() {
 
           <div className="info">
             <h1 className="title">{Items[i].title}</h1>
-            <span
-              className="owner"
-              onClick={(e) => {
-                setShow({ type: 'user', owner: e.target.innerText })
-              }}
-            >
+            <span className="owner" onClick={showUser}>
               {Items[i].owner}
             </span>
             <strong className="views">
